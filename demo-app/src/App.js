@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import { BrowserRouter as Router, Link, NavLink, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Link, NavLink, Redirect, Prompt } from 'react-router-dom';
 import Route from 'react-router-dom/Route';
 
 const User = (params) => {
@@ -50,7 +50,13 @@ class App extends Component {
               }>Minerva</NavLink>
             </li>
           </ul>
-          <input type="button" value={this.state.loggedIn ? 'Log Out': 'Log In'} onClick={this.loginHangle.bind(this)} />
+          <Prompt
+            when={!this.state.loggedIn}
+            message={(location) => {
+              return location.pathname.startsWith('/user') ? 'Are you sure?' : true
+            }}
+          />
+          <input type="button" value={this.state.loggedIn ? 'Log Out' : 'Log In'} onClick={this.loginHangle.bind(this)} />
           <Route path='/' exact strict render={
             () => {
               return (<h1>Welcome home!</h1>)
