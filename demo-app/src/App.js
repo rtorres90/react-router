@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
-import { BrowserRouter as Router, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Link , NavLink} from 'react-router-dom';
 import Route from 'react-router-dom/Route';
 
-const User = ({match}) => {
+const User = ({ match }) => {
   return (<h1>Welcome User! {match.params.username}</h1>);
 }
 
@@ -14,16 +14,32 @@ class App extends Component {
         <div>
           <ul>
             <li>
-              <Link to="/">Home</Link>
+              <NavLink to="/" exact activeStyle={
+                {
+                  color: 'green'
+                }
+              }>Home</NavLink>
             </li>
             <li>
-              <Link to="/about/">About</Link>
+              <NavLink to="/about/" exact activeStyle={
+                {
+                  color: 'green'
+                }
+              }>About</NavLink>
             </li>
             <li>
-              <Link to="/user/Roberto">Roberto</Link>
+              <NavLink to="/user/Roberto" exact activeStyle={
+                {
+                  color: 'green'
+                }
+              }>Roberto</NavLink>
             </li>
             <li>
-              <Link to="/user/Minerva">Minerva</Link>
+              <NavLink to="/user/Minerva" exact activeStyle={
+                {
+                  color: 'green'
+                }
+              }>Minerva</NavLink>
             </li>
           </ul>
           <Route path='/' exact strict render={
